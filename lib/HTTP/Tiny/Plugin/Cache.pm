@@ -30,7 +30,7 @@ sub _get_cache_dir_path {
 sub before_request {
     my ($self, $r) = @_;
 
-    my ($ht, $method, $url, $options) = @{ $r->{argv} };
+    my ($http, $method, $url, $options) = @{ $r->{argv} };
     unless ($method eq 'GET') {
         log_trace "Not a GET response, skip caching";
         return -1; # decline
@@ -61,7 +61,7 @@ sub before_request {
 sub after_request {
     my ($self, $r) = @_;
 
-    my ($ht, $method, $url, $options) = @{ $r->{argv} };
+    my ($http, $method, $url, $options) = @{ $r->{argv} };
 
     my ($cachedir, $cachepath) = $self->_get_cache_dir_path($url);
 
